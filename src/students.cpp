@@ -34,6 +34,15 @@ namespace Calculator {
 
   int Students::calculate_average() {
 
+    int total_score = 0;
+
+    for (int i = 0; i < scores.size(); i++) {
+      total_score += scores[i];
+    }
+
+
+    average_score = total_score / scores.size();
+
     return average_score;
   }
 

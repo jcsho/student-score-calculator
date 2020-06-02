@@ -21,7 +21,7 @@ namespace Calculator {
       std::vector<std::string> student_names;
       // Store the scores from the file (mapped 1:1 with the names)
       std::vector<int> scores;
-      int average_score;
+      int average_score = 0;
     public:
 
       Students(std::string filename);
@@ -35,7 +35,8 @@ namespace Calculator {
       // Calculates mean value from all scores in the file and saves it in memory
       // returns the mean value
       int calculate_average();
-
+      
+      // Prepends file with average score value
       void write_to_file();
 
   };
