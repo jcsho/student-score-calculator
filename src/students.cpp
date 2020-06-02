@@ -24,6 +24,9 @@ namespace Calculator {
         // debug output
         // std::cout << "Student: " + name + " Score: " + std::to_string(score) << std::endl;
       }
+      file.close();
+    } else {
+      std::cout << "Cannot open " + filename << std::endl;
     }
 
     return scores;
