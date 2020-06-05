@@ -4,6 +4,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <cstdio>
 
 namespace Calculator {
 
@@ -46,7 +47,37 @@ namespace Calculator {
     return average_score;
   }
 
+  // implementation creates an empty new file
+  // inserts the resulting string as the first line
+  // copies original file content into new file
+  // deletes the original file
+  // renames new file to original file
+  // see https://stackoverflow.com/questions/11108238/adding-text-and-lines-to-the-beginning-of-a-file-c
   void Students::write_to_file() {
+
+    std::string temp_filename = "temp_file.txt";
+    std::ifstream base_file;
+    std::ofstream dest_file;
+
+    base_file.open(filename);
+    dest_file.open(temp_filename);
+
+    std::string output_string = output_text + std::to_string(average_score);
+
+    if (base_file.is_open()) {
+      dest_file << output_string << std::endl;
+      dest_file << base_file.rdbuf();
+    }
+
+    base_file.close();
+    dest_file.close();
+    
+    // remove() and rename() requires const char*
+    // https://cplusplus.com/reference/string/string/c_str
+    const char* c_filename = filename.c_str();
+    const char* c_temp_filename = temp_filename.c_str();
+    std::remove(c_filename);
+    std::rename(c_temp_filename, c_filename);
 
     return;
   }
